@@ -1,0 +1,41 @@
+
+.calculadora {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 40%;
+}
+
+#display {
+    grid-column: 1 / -1;
+    padding: 16px;
+    display: flex;
+    margin: 10px 10px 20px;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #363636;
+    border-radius: 15px;
+    text-align: right;
+    justify-content: space-between;
+    word-break: break-all;
+    box-shadow: 0px 0px 0px 10px #00000033;
+}
+
+.botonera {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    grid-template-rows: 80px 80px 80px 80px 80px;
+    padding: 15px;
+}
+
+button {
+    cursor: pointer;
+    margin: 5px;
+    padding: 0;
+    font-size: 1.5em;
+}
+
+.row-3 {
+    grid-row: span 3;
+}
