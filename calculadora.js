@@ -13,12 +13,25 @@ let screen = document.querySelector('.display')
 
 //reconoce el numero marcado y lo muestra en pantalla
 numeros.forEach(numero => {
-    numero.addEventListener('click' , function (e) {
+    numero.addEventListener('click', function (e) {
         agregarNumero(e.target.textContent)
-        screen.innerHTML = valor  
+        screen.innerHTML = screen.innerHTML  + valor  
         
     })
 })
+
+
+//Reconoce el numero marcado con el teclado
+    window.addEventListener('keydown', function (e) {
+        let tecla = e.key;
+        if(parseInt(tecla) >= 0 && parseInt(tecla) <= 9 || tecla == '.'){
+            agregarNumero(tecla)
+        screen.innerHTML += valor;
+        
+
+        }
+        
+    })
 
 
  // muestra en pantalla el operador elejido por el usuario
@@ -26,12 +39,42 @@ operacion.forEach(op => {
     op.addEventListener('click', function (e){
         operator(e.target.textContent)
         if(valorPrevio !== ''){
-            screen.textContent = valorPrevio + ' ' + operador + valor         
+            screen.textContent = valorPrevio + ' ' + operador        
         }
+       
           
     
     })
 }) 
+
+//muestra en pantalla el operador al precionar la tecla
+window.addEventListener('keydown', function (e) {
+    let tecla = e.key
+    if(tecla == '+' || tecla ==  '-' || tecla == '*' || tecla == '/'){
+        operator(tecla)
+        if(valorPrevio !== ''){
+            screen.textContent = valorPrevio + ' ' + operador         
+        }
+        
+
+    }
+    
+})
+
+//calcula presionando tecla Enter
+window.addEventListener('keydown', function(e) {
+    let tecla = e.key
+    if (tecla == 'Enter'){
+        if(valor != '' && valorPrevio != ''){
+            calcular()
+            screen.textContent = ''
+            screen.textContent = valorPrevio
+        }
+
+    }
+
+})
+
 
 //calcula
 igual.addEventListener('click', function(){
