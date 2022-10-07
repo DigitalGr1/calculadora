@@ -15,7 +15,7 @@ let screen = document.querySelector('.display')
 numeros.forEach(numero => {
     numero.addEventListener('click', function (e) {
         agregarNumero(e.target.textContent)
-        screen.innerHTML = screen.innerHTML  + valor  
+        screen.innerHTML = valor  
         
     })
 })
@@ -26,7 +26,7 @@ numeros.forEach(numero => {
         let tecla = e.key;
         if(parseInt(tecla) >= 0 && parseInt(tecla) <= 9 || tecla == '.'){
             agregarNumero(tecla)
-        screen.innerHTML += valor;
+        screen.innerHTML = valor
         
 
         }
@@ -60,6 +60,18 @@ window.addEventListener('keydown', function (e) {
     }
     
 })
+
+// permite borrar el valor escritor al tocar la tecla Backspace
+window.addEventListener('keydown', function (e) {
+    let tecla = e.key
+    if(tecla == 'Backspace'){
+       valor = valor.slice(0, -1)
+       screen.textContent = valor
+    }
+    
+
+})
+
 
 //calcula presionando tecla Enter
 window.addEventListener('keydown', function(e) {
