@@ -1,12 +1,15 @@
 let valor = ''
 let valorPrevio = ''
 let operador = ''
+let resultado = ''
+let memoria = ''
 
 
 const numeros = document.querySelectorAll('.numero')
 const operacion = document.querySelectorAll('.operador')
 const clear = document.querySelector('.clear')
 const igual = document.querySelector('.igual')
+
 //const decimal = document.querySelector('.decimal')
 
 let screen = document.querySelector('.display')
@@ -63,8 +66,7 @@ window.addEventListener('keydown', function (e) {
 
 // permite borrar el valor escritor al tocar la tecla Backspace
 window.addEventListener('keydown', function (e) {
-    let tecla = e.key
-    if(tecla == 'Backspace'){
+    if(e.key == 'Backspace'){
        valor = valor.slice(0, -1)
        screen.textContent = valor
     }
@@ -75,13 +77,20 @@ window.addEventListener('keydown', function (e) {
 
 //calcula presionando tecla Enter
 window.addEventListener('keydown', function(e) {
-    let tecla = e.key
-    if (tecla == 'Enter'){
+  
+    if (e.key == 'Enter'){
+       /*  if(valorPrevio == '')return */
+
         if(valor != '' && valorPrevio != ''){
             calcular()
+            operador = ''
             screen.textContent = ''
-            screen.textContent = valorPrevio
+            resultado = valorPrevio
+            valorPrevio = ''
+            screen.textContent = resultado
         }
+
+        quitarFoco()
 
     }
 
@@ -92,8 +101,11 @@ window.addEventListener('keydown', function(e) {
 igual.addEventListener('click', function(){
     if(valor != '' && valorPrevio != ''){
         calcular()
+        operador = ''
         screen.textContent = ''
-        screen.textContent = valorPrevio
+        resultado = valorPrevio
+        valorPrevio = ''
+        screen.textContent = resultado
     }
 })
 
@@ -103,6 +115,7 @@ valorPrevio = ''
 valor = ''
 operador = ''
 screen.textContent = valor
+quitarFoco()
 })
 
 decimal.addEventListener('click', function(){
@@ -112,6 +125,11 @@ decimal.addEventListener('click', function(){
 
 // muestra en screen cada numero tipeado
 function agregarNumero(num){
+
+    if(resultado != ''){
+        resultado = ''
+        valor = ''
+    }
     if (num == '.'){
 
         if(!valor.includes('.')){
@@ -123,37 +141,51 @@ function agregarNumero(num){
     return  valor   
 }
 
-// muestra el operador y asigna a valor previo el primer valor
+/*  muestra el operador y asigna a valor previo el primer valor,
+ si hay un resultado de una cuenta previa toma este valor como el
+  previo y se lo asigna a la variable memoria
+ */
 function operator(op){
-    operador = op
+    if(resultado != ''){
+        memoria = resultado
+        resultado = ''
+        valorPrevio = memoria
+        operador = op
+        valor = ''
+    }else{
+        operador = op
     valorPrevio = valor
-    valor = ''
+    valor = '' 
+    }
+    
+    
+    
 }
 
 // funcion calculadora
 function calcular(){
-    valorPrevio = Number(valorPrevio)
-    valor = Number(valor)
+    let valorPrevio2 = Number(valorPrevio)
+    let valor2 = Number(valor)
     switch (operador) {
         case '+':
-            valorPrevio += valor
+            valorPrevio2 += valor2
             break
         case '-':
-            valorPrevio -= valor
+            valorPrevio2 -= valor2
             break
         case '*':
-            valorPrevio *= valor
+            valorPrevio2 *= valor2
             break
         case '/':
-            valorPrevio /= valor
+            valorPrevio2 /= valor2
             break
         default:
             return
     }
 
 
-    valorPrevio = valorPrevio.toString()
-    valor = valor.toString()
+    valorPrevio = valorPrevio2.toString()
+    valor = valor2.toString()
 }
 
 // revisar que no haya puesto punto
@@ -164,5 +196,10 @@ function addDecimal () {
     }
 }
 
+//quita el foco del boton C al presionarlo, para que al presionar enter no borre.
+function quitarFoco(){
+    elemento = document.querySelector('.clear')
+    elemento.blur();
+  }
 
 
