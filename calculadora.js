@@ -12,7 +12,8 @@ const igual = document.querySelector('.igual')
 
 //const decimal = document.querySelector('.decimal')
 
-let screen = document.querySelector('.display')
+let screen = document.querySelector('.valor-actual')
+
 
 //reconoce el numero marcado y lo muestra en pantalla
 numeros.forEach(numero => {
@@ -49,6 +50,7 @@ operacion.forEach(op => {
     
     })
 }) 
+
 
 //muestra en pantalla el operador al precionar la tecla
 window.addEventListener('keydown', function (e) {
@@ -91,7 +93,7 @@ window.addEventListener('keydown', function(e) {
         }
 
         quitarFoco()
-
+        
     }
 
 })

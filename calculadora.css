@@ -1,16 +1,38 @@
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.calculadora {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    width: 40%;
+* {
+    font-family: 'Montserrat';
+    color:#fff;
 }
 
+body{
+    margin: 0;
+    background-color:#678F98;
+}
+
+.contenedor {
+    /* Alinea el contenedor exactaamente al medio */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* toma el tamanio total de lo que se visualiza*/
+    height: 100vh;
+}
+
+/* Diseño de la caja contenedora de la calculadora */
+.calculadora {
+    display: grid;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: 160px repeat(5,75px);
+    background-color: #293241;
+    padding: 15px;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+}
+
+.calculadora button{
+    font-weight: 800;
+}
+
+/* Diseño del display */
 .display {
     grid-column: 1 / -1;
     padding: 16px;
@@ -18,28 +40,57 @@ body{
     margin: 10px 10px 20px;
     flex-direction: column;
     align-items: flex-end;
-    background-color: #cdcbcb;
-    border-radius: 15px;
+    background-color: #080D0FCC;
+    border-radius: 10px;
     text-align: right;
     justify-content: space-between;
     word-break: break-all;
     box-shadow: 0px 0px 0px 10px #00000033;
 }
 
-.botonera {
-    display: grid;
-    grid-template-columns: 80px 80px 80px 80px;
-    grid-template-rows: 80px 80px 80px 80px 80px;
-    padding: 15px;
+#valor-actual {
+    font-size: 3rem;
 }
 
+/* Diseño del valor anterior en el display */
+#valor-anterior {
+    font-size: 1.8rem;
+    color: green;
+}
+
+/* Diseño de los botones de la calculadora*/
 button {
     cursor: pointer;
-    margin: 5px;
-    padding: 0;
-    font-size: 1.5em;
+    margin:5px;
+    padding:0;
+    border-radius:32px;
+    font-size:1.5em;
+    border: none;
+    background: rgba(8, 13, 15, 0.8);
+    box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5), -1px -1px 10px 3px #465267;
+    border-radius: 10px;
 }
 
+button:active {
+    background: rgba(30, 45, 50, 0.8) ;
+}
+
+.especial:active {
+    background: rgba(144, 35, 2, 0.8) ;
+}
+
+button:focus{
+    outline:none;
+}
+
+/* Boton especial que ocupa dos celdas */
 .col-2 {
     grid-column: span 2;
+}
+.especial:active {
+    background: rgba(144, 35, 2, 0.8) ;
+}
+.especial {
+    background-color: #EE6C4DCC;
+
 }

@@ -11,30 +11,31 @@
 </head>
 
 <body>
-    <div class="calculadora">
-        <div>
-            <div class="display"></div>
-        </div>
-        <div class="botonera">
-            <button class="col-2 clear" onclick="quitarFoco()">C</button>
-            <button>%</button>
-            <button class='btn operador'>/</button>
-            <button class="btn numero">7</button>
-            <button class="btn numero">8</button>
-            <button class="btn numero">9</button>
-            <button class='btn operador'>+</button>
-            <button class="btn numero">4</button>
-            <button class="btn numero">5</button>
-            <button class="btn numero">6</button>
-            <button class='btn operador'>-</button>
-            <button class="btn numero">1</button>
-            <button class="btn numero">2</button>
-            <button class="btn numero">3</button>
-            <button class='btn operador'>*</button>
-            <button class="btn numero">.</button>
-            <button class="btn numero">0</button>
-            <button class="col-2 igual">=</button>
-
+    <div class="contenedor">
+        <div class="calculadora">
+                <div class="display">
+                    <div id="valor-anterior"></div>
+                    <div id="valor-actual" class="valor-actual"></div>
+                </div>
+                <button class="clear especial" onclick="quitarFoco()">C</button>
+                <button>%</button>
+                <button>&laquo;</button>
+                <button class='btn operador'>/</button>
+                <button class="btn numero">7</button>
+                <button class="btn numero">8</button>
+                <button class="btn numero">9</button>
+                <button class='btn operador'>+</button>
+                <button class="btn numero">4</button>
+                <button class="btn numero">5</button>
+                <button class="btn numero">6</button>
+                <button class='btn operador'>-</button>
+                <button class="btn numero">1</button>
+                <button class="btn numero">2</button>
+                <button class="btn numero">3</button>
+                <button class='btn operador'>*</button>
+                <button class="btn numero">.</button>
+                <button class="btn numero">0</button>
+                <button class="col-2 igual especial">=</button>
         </div>
     </div>
 </body>
